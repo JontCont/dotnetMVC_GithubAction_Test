@@ -23,7 +23,7 @@ jobs:
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
       - name: Build and Publish Web App
-        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true  /p:PublishProfile=Test
+        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       # Runs a set of commands using the runners shell
       - name: Upload Artifact
