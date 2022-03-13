@@ -26,5 +26,10 @@ namespace dotnetMVC.Controllers
 
             return View();
         }
+
+        public string Get_String()
+        {
+            return "Test";
+        }
     }
 }
