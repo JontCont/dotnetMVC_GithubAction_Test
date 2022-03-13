@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
                
-      - name: Setup MSBuild.exe
-        uses: warrenbuckley/Setup-MSBuild@v1
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
       
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true
