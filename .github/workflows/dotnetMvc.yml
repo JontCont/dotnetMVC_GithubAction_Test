@@ -16,6 +16,12 @@ jobs:
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.1
       
+      - name: Setup NuGet.exe for use with actions
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: Restore NuGet Packages
+        run: nuget restore ./dotnetMVC/dotnetMVC.sln
+      
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true
 
