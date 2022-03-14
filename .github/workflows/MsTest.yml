@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
                
-      - name: setup-msbuild
-        uses: microsoft/setup-msbuild@v1.1
+     # - name: setup-msbuild
+     #   uses: microsoft/setup-msbuild@v1.1
       
       - name: Setup NuGet.exe for use with actions
         uses: NuGet/setup-nuget@v1.0.5
@@ -22,6 +22,11 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
+      - name: Dependency - MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer'  
+
       - name: Run MStest 
         run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "mstest $x"'
       #- name: Run a one-line script
