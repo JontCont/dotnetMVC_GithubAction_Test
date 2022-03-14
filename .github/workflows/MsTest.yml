@@ -22,15 +22,9 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
-      - name: Dependency - MSBuild
-        uses: microsoft/setup-msbuild@v1.1
-        with:
-          vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer'  
-
       - name: Run MStest 
-        working-directory: src
-        continue-on-error: true
-        run: 'MSTest '
+        run: '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /testcontainer:"dotnetMVC\dotnetMvcUnitTests\bin\Debug\dotnetMvcUnitTests.dll"'
+
       #  run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"'
       #- name: Run a one-line script
       #  run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
