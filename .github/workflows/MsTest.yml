@@ -32,7 +32,7 @@ jobs:
       - name: Run MStest 
         working-directory: dotnetMVC\dotnetMvcUnitTests\bin\Debug
         continue-on-error: true
-        run: mstest /help
+        run: '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /testcontainer:dotnetMvcUnitTests.dll'
       #  run: $x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"
 
       #  run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"'
