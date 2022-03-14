@@ -25,12 +25,12 @@ jobs:
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
       - name: MSBuild
-        working-directory: src
+        working-directory: dotnetMVC
         continue-on-error: true
-        run: msbuild ./dotnetMVC/dotnetMVC.sln
+        run: msbuild dotnetMVC.sln
         
       - name: Run MStest 
-        working-directory: src
+        working-directory: dotnetMvcUnitTests\bin\Debug
         continue-on-error: true
         run: mstest /help
 
