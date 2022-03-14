@@ -28,6 +28,9 @@ jobs:
           vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer'  
 
       - name: Run MStest 
-        run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"'
+        working-directory: src
+        continue-on-error: true
+        run: 'MSTest '
+      #  run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"'
       #- name: Run a one-line script
       #  run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
