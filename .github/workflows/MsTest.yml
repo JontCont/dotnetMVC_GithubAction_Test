@@ -22,5 +22,7 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
-      - name: Run a one-line script
-        run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
+      - name: Run MStest 
+        run: $x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "mstest $x"
+      #- name: Run a one-line script
+      #  run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
