@@ -30,9 +30,9 @@ jobs:
         run: msbuild dotnetMVC.sln
         
       - name: Run MStest 
-        working-directory: dotnetMvcUnitTests\bin\Debug
+        working-directory: dotnetMVC\dotnetMvcUnitTests\bin\Debug
         continue-on-error: true
-        run: mstest /help
+        run: $x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"
 
       #  run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"'
       #- name: Run a one-line script
