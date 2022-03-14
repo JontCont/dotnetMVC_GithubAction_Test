@@ -1,0 +1,26 @@
+name: Display MsTest helper
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+               
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+      
+      - name: Setup NuGet.exe for use with actions
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: Restore NuGet Packages
+        run: nuget restore ./dotnetMVC/dotnetMVC.sln
+      
+      - name: Run a one-line script
+        run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
