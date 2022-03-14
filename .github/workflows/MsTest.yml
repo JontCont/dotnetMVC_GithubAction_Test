@@ -30,6 +30,8 @@ jobs:
         run: msbuild ./dotnetMVC/dotnetMVC.sln
         
       - name: Run MStest 
+        working-directory: src
+        continue-on-error: true
         run: mstest /help
 
       #  run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "MSTest $x"'
