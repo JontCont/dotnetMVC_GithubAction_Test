@@ -23,6 +23,6 @@ jobs:
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
       - name: Run MStest 
-        run: $x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "mstest $x"
+        run: '$x = ""; dir *\bin\*test*.dll -Recurse | foreach { $x += "/testcontainer:""$_"" " }; iex "mstest $x"'
       #- name: Run a one-line script
       #  run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
