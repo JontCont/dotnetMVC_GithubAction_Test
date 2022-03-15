@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetMVC", "dotnetMVC\dotnetMVC.csproj", "{1DFB7163-23BF-4755-A5AA-E93C6EC9F88D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetMvcUnitTests", "dotnetMvcUnitTests\dotnetMvcUnitTests.csproj", "{A863B442-D41B-426E-9184-D834C3B17612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetMVmsTest", "dotnetMVmsTest\dotnetMVmsTest.csproj", "{8BE0D557-581C-4F00-9866-55EAA08DC677}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A863B442-D41B-426E-9184-D834C3B17612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A863B442-D41B-426E-9184-D834C3B17612}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A863B442-D41B-426E-9184-D834C3B17612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE0D557-581C-4F00-9866-55EAA08DC677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE0D557-581C-4F00-9866-55EAA08DC677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE0D557-581C-4F00-9866-55EAA08DC677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE0D557-581C-4F00-9866-55EAA08DC677}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
