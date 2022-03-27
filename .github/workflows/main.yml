@@ -19,4 +19,4 @@ jobs:
         PUBLISH_DIR : ./dist
       run: |
         echo dir "$PUBLISH_DIR"
-
+        echo repo "$GITHUB_REPOSITORY".git
