@@ -5,12 +5,6 @@ on:
       - dev_pull_request
 jobs:
   build:
-    name: Build and deploy gh-pages
-    env:
-      MY_SECRET   : ${{secrets.commit_secret}}
-      USER_NAME   : githubaction
-      USER_EMAIL  : githubaction@fake.com
-      PUBLISH_DIR : ./dist
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +13,9 @@ jobs:
       # 執行一組的指令
     - name: Run a multi-line script
       run: |
-        echo "$MY_SECRET"
-        echo "$USER_NAME"
-    
+        echo "$GITHUB.REPOSITORY"
+      env:
+        MY_SECRET   : ${{secrets.commit_secret}}
+        USER_NAME   : githubaction
+        USER_EMAIL  : githubaction@fake.com
+        PUBLISH_DIR : ./dist
