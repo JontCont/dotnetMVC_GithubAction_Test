@@ -40,8 +40,7 @@ jobs:
           git status
           git remote add origin https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b gh-pages-dev
-          git pull origin gh-pages-dev
           git add --all
           
           git commit -m "Github Actions Deploy"
-          git push -u origin gh-pages-dev
+          git push -uf origin gh-pages-dev 
