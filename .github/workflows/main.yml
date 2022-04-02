@@ -23,13 +23,15 @@ jobs:
           cd test
           New-Item hello.txt
           git init
+          git config --global user.name  "jontcont"
+          git config --global user.email "information9527@gmail.com"
+          git config --list
+          
           git add --all
           git status
           git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b pages
-          git config --global user.name  "jontcont"
-          git config --global user.email "information9527@gmail.com"
-          git config --list
+
           git commit -m "deploy to Github pages"
           git push origin pages -f
           
