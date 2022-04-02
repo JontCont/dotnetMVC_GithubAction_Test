@@ -42,5 +42,5 @@ jobs:
           git checkout -b gh-pages-dev
           git add --all
           
-          git commit -m "Github Actions Deploy"
+          git commit -m "Github Actions Deploy" --amend --committer-date-is-author-date
           git push -uf origin gh-pages-dev 
