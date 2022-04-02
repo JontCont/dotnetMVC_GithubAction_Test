@@ -11,8 +11,8 @@ jobs:
     runs-on: windows-latest
     env:
         MY_SECRET   : ${{secrets.commit_secret}}
-        USER_NAME   : jontcont
-        USER_EMAIL  : 52921053+JontCont@users.noreply.github.com
+        USER_NAME   : github-actions[bot]
+        USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
         PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
     steps:
       - name : run checkout@v2
