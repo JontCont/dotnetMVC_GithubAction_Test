@@ -38,7 +38,7 @@ jobs:
           git fetch deploy gh-pages-dev
           
           echo ---- build -------
-          msbuild ../../dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+          msbuild ../../dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
           
           echo ---- status ----
           git status
