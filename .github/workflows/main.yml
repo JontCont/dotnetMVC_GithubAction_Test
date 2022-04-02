@@ -28,7 +28,7 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
           git status
-          git remote add origin https://${{secrets.commit_secret}}/dotnetMvc_Deploy.git 
+          git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b pages
           git add --all
           
