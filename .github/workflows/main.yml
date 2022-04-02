@@ -20,14 +20,12 @@ jobs:
       - name: test git 
         run: |
           echo $USER_NAME
-          echo $USER_EMAIL
           md test
           cd test
           New-Item hello.txt
           git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --list
           
           git status
           git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
