@@ -23,8 +23,6 @@ jobs:
           cd test
           New-Item hello.txt
           git init
-          git config --global user.name $USER_NAME
-          git config --global user.email $USER_EMAIL
           git status
           git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b pages
