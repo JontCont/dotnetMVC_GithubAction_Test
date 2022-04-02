@@ -4,7 +4,7 @@ on:
   push:
     branches: [ dev_pull_request ]
   workflow_dispatch:
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
@@ -15,23 +15,15 @@ jobs:
         USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
         PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
     steps:
-      - uses: actions/checkout@v3.0.0
-
-      - name: setup-msbuild
-        uses: microsoft/setup-msbuild@v1.1
-      
-      - name: Setup NuGet.exe for use with actions
-        uses: NuGet/setup-nuget@v1.0.5
-      
-      - name: Restore NuGet Packages
-        run: nuget restore ./dotnetMVC/dotnetMVC.sln
-            
-      - name: Build and Publish Web App
-        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
-
+      - uses: actions/checkout@v2
+              
       - name: test git 
         run: |
-          cd ./dotnetMVC/dotnetMvcUnitTests/bin/Release
+          echo $USER_NAME
+          echo $USER_EMAIL
+          md test
+          cd test
+          New-Item hello.txt
           git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -39,8 +31,11 @@ jobs:
           
           git status
           git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
-          git checkout -b gh-pages
+          git checkout -b pages
           git add --all
           
           git commit -m "Github Actions Deploy"
-          git push --set-upstream origin gh-pages
+          git push --set-upstream origin pages
+         
+          
+
