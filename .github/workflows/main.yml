@@ -26,7 +26,7 @@ jobs:
       
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
-            
+      
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
@@ -39,9 +39,9 @@ jobs:
           
           git status
           git remote add origin https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
-          git checkout -b gh-pages
-          git pull origin gh-pages
+          git checkout -b gh-pages-dev
+          git pull origin gh-pages-dev
           git add --all
           
           git commit -m "Github Actions Deploy"
-          git push -u origin gh-pages
+          git push -u origin gh-pages-dev
