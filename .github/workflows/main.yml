@@ -1,4 +1,4 @@
-name: Use ubuntu On github Action
+name: Use windows On github Action
 
 on:
   push:
@@ -8,29 +8,30 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    name: Build and deploy gh-pages
+    runs-on: windows-latest
     env:
         MY_SECRET   : ${{secrets.commit_secret}}
         USER_NAME   : github-actions[bot]
         USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
         PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
-    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
               
       - name: test git 
         run: |
-          git config --global user.name  "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
           md test
           cd test
           New-Item hello.txt
           git init
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
           git status
-          git remote add origin https://$MY_SECRET@github.com/dotnetMvc_Deploy.git
-          git checkout -b gh-pages
+          git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
+          git checkout -b pages
           git add --all
+          
           git commit -m "Github Actions Deploy"
-          git push origin gh-pages -f
+          
+
