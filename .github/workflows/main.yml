@@ -1,24 +1,46 @@
-name: deploy mvc from other repository
+
+name: Use windows On github Action
+
 on:
   push:
-    branches:
-      - dev_pull_request
+    branches: [ dev_pull_request ]
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    name: Build and deploy gh-pages
+    runs-on: windows-latest
     env:
-      MY_SECRET   : ${{secrets.commit_secret}}
-      USER_NAME   : githubaction
-      USER_EMAIL  : githubaction@fake.com
-      PUBLISH_DIR : ./dist
-    runs-on: ubuntu-latest
-
+        MY_SECRET   : ${{secrets.commit_secret}}
+        USER_NAME   : github-actions[bot]
+        USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
+        PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
     steps:
-    - uses: actions/checkout@v3.0.0
-    
-      # 執行一組的指令
-    - name: Run a multi-line script
-      run: |
-        echo $MY_SECRET
-        echo $USER_NAME
-    
+      - uses: actions/checkout@v2
+      
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+      
+      - name: Setup NuGet.exe for use with actions
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: Restore NuGet Packages
+        run: nuget restore ./dotnetMVC/dotnetMVC.sln
+      
+      - name: Build and Publish Web App
+        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+
+      - name: test git 
+        run: |
+          cd ./dotnetMVC/dotnetMVC/bin/publish
+          git init
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git status
+          git remote add origin https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+          git checkout -b gh-pages-dev
+          git add --all
+          
+          git commit -m "Github Actions Deploy"
+          git push -uf origin gh-pages-dev 
