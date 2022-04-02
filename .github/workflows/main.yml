@@ -31,6 +31,6 @@ jobs:
           git config --global user.email "information9527@gmail.com"
           git config --list
           git commit -m "deploy to Github pages"
-          git push -u origin pages
+          git push origin pages -f
           
 
