@@ -29,7 +29,7 @@ jobs:
           git init
           
           git status
-          git remote set-url origin https://github.com/JontCont/dotnetMvc_Deploy.git
+          git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git
           git checkout -b gh-pages
           git add --all
           git commit -m "Github Actions Deploy"
