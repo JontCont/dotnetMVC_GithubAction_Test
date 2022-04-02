@@ -22,7 +22,7 @@ jobs:
           
           md test
           cd test
-          New-Item hello.txt
+          New-Item hello1.txt
           git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
