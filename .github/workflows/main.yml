@@ -33,5 +33,5 @@ jobs:
           git add --all
           
           git commit -m "Github Actions Deploy"
-          git push origin pages -f
+          git push -u origin pages 
           
