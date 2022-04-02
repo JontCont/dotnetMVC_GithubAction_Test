@@ -23,9 +23,10 @@ jobs:
           cd test
           New-Item hello.txt
           git init
+          git add --all
           git status
           git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b pages
-          git add --all
           ls 
+          git commit -m "auto push" --allow-empty --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
 
