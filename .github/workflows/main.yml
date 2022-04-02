@@ -32,7 +32,8 @@ jobs:
           git checkout -b pages
           git add --all
           
-          git commit -m "123"
+          git commit -m "Github Actions Deploy"
+          git push 
          
           
 
