@@ -42,6 +42,7 @@ jobs:
           
           echo ---- status ----
           git status
+          git checkout -b gh-pages-dev
           git add --all
           
           echo --- commit ----
