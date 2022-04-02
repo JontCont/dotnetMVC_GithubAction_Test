@@ -27,7 +27,7 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
-      - name: git pull repository 
+      - name: git pull repository and Build Publish Web App
         run: |
           mkdir ./dotnetMVC/dotnetMVC/bin/publish
           git remote add origin https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
@@ -35,15 +35,14 @@ jobs:
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin gh-pages-dev
-          git config --list
           
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       - name: git push publish From Repository
         run: |
-          cd ./dotnetMVC/dotnetMVC/bin/publish
-          
+          git config --list
+        
           git status
           git add --all
           
