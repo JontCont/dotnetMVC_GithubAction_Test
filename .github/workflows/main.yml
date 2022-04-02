@@ -32,7 +32,7 @@ jobs:
 
       - name: test git 
         run: |
-          cd ./dotnetMVC/dotnetMvcUnitTests/bin/Release
+          cd ./dotnetMVC/dotnetMVC/bin/publish
           git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
