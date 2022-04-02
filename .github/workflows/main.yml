@@ -1,22 +1,33 @@
-name: deploy mvc from other repository
+name: dontnet Mvc to CI Test
+
 on:
   push:
-    branches:
-      - dev_pull_request
+    branches: [ dev_pull_request ]
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3.0.0
-    
-      # 執行一組的指令
-    - name: Run a multi-line script
-      env:
-        MY_SECRET   : ${{secrets.commit_secret}}
-        USER_NAME   : githubaction
-        USER_EMAIL  : githubaction@fake.com
-        PUBLISH_DIR : ./dist
-      run: |
-        echo dir "$PUBLISH_DIR"
-        echo repo "$GITHUB_REPOSITORY".git
+      - uses: actions/checkout@v2
+               
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+      
+      - name: Setup NuGet.exe for use with actions
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: Restore NuGet Packages
+        run: nuget restore ./dotnetMVC/dotnetMVC.sln
+      
+      - name: Build and Publish Web App
+        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+
+      # Runs a set of commands using the runners shell
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: published_webapp
+          path: ./dotnetMVC/dotnetMvcUnitTests/bin/Release
