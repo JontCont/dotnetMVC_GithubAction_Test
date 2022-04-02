@@ -4,14 +4,15 @@ on:
   push:
     branches: [ dev_pull_request ]
   workflow_dispatch:
-
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name : run checkout@v2
+        uses: actions/checkout@v2
                
       - name: setup-msbuild and NuGet.exe
         uses: |
@@ -20,4 +21,7 @@ jobs:
       
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
+      
+
+
       
