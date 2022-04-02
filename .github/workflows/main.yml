@@ -25,4 +25,13 @@ jobs:
           git remote set-url origin https://github.com/JontCont/dotnetMvc_Deploy.git
           git config --list
           
-
+          md test
+          cd test
+          New-Item hello.txt
+          git init
+          
+          git status
+          git checkout -b pages
+          git add --all
+          git commit -m "Github Actions Deploy"
+          git push -u origin pages
