@@ -41,11 +41,11 @@ jobs:
 
       - name: git push publish From Repository
         run: |
-          git config --list
           git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
-
+          
+          git init
+          git fetch deploy gh-pages-dev
           git status
           git add --all
-          
           git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
           git push -u deploy gh-pages-dev 
