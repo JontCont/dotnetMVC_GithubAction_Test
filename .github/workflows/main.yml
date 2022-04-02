@@ -31,22 +31,31 @@ jobs:
         run: |
           mkdir ./dotnetMVC/dotnetMVC/bin/publish
           cd ./dotnetMVC/dotnetMVC/bin/publish
-          git init
           git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+          git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch deploy gh-pages-dev
           
-          echo ---- build -------
-          msbuild ../../dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
-          
-          echo ---- status ----
+      - name: Build and Publish Web App
+        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+
+      - name: git push publish From Repository
+        run: |
+          cd ./dotnetMVC/dotnetMVC/bin/publish
+          echo ---- statut--------
           git status
-          git checkout -b gh-pages-dev
-          git add --all
           
-          echo --- commit ----
-          git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
+          echo ----- config --------
+          git config --list
+          
+          echo ----- ls ---------
+          ls
+      #   echo --------------------------------
+      #   git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+      #   
+      #   git status
+      #   git fetch deploy gh-pages-dev
+      #   git add --all
+      #   git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
           git push -u deploy gh-pages-dev 
-
-
