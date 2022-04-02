@@ -51,4 +51,4 @@ jobs:
           git add --all
           
           git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
-          git push -uf origin gh-pages-dev 
+          git push -u origin gh-pages-dev 
