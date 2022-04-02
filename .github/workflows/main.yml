@@ -28,7 +28,7 @@ jobs:
           git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b pages
           git config --global user.name  "jontcont"
-          git config --global user.email "52921053+JontCont@users.noreply.github.com"
+          git config --global user.email "information9527@gmail.com"
           git config --list
           git commit -m "deploy to Github pages"
           git push -u origin pages
