@@ -37,13 +37,15 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch deploy gh-pages-dev
           
-      - name: Build and Publish Web App
-        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
-
-      - name: git push publish From Repository
-        run: |
-          echo --------------------------------
-          git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+          echo ---- build -------
+          msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
           
+          echo ---- status ----
           git status
+          git add --all
+          
+          echo --- commit ----
+          git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
+          git push -u deploy gh-pages-dev 
+
 
