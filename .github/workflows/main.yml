@@ -42,5 +42,5 @@ jobs:
           git checkout -b gh-pages-dev
           git add --all
           
-          git commit --amend --committer-date-is-author-date
+          git commit -m "bots Updated: `date +'%Y-%m-%d %H:%M:%S'`"
           git push -uf origin gh-pages-dev 
