@@ -34,4 +34,4 @@ jobs:
           git checkout -b gh-pages
           git add --all
           git commit -m "Github Actions Deploy"
-          git push -u origin gh-pages
+          git push
