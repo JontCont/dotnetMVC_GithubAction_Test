@@ -22,6 +22,7 @@ jobs:
         run: |
           git config --local user.name $USER_NAME
           git config --local user.email $USER_EMAIL
+          git remote set-url origin https://github.com/JontCont/dotnetMvc_Deploy.git
           git config --list
           
 
