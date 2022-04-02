@@ -1,4 +1,4 @@
-name: dontnet Mvc to CI Test
+name: Use ubuntu On github Action
 
 on:
   push:
