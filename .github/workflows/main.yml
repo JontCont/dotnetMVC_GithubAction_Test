@@ -30,10 +30,10 @@ jobs:
       - name: git pull Publish
         run: |
           cd ./dotnetMVC/dotnetMVC/bin/publish
-          git status
+          git init
           git remote add origin https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b gh-pages-dev
-          git pull
+          git pull origin 
       
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
