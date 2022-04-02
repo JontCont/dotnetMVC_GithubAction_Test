@@ -20,8 +20,8 @@ jobs:
               
       - name: test git 
         run: |
-          git config --global user.name $USER_NAME
-          git config --global user.email $USER_EMAIL
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://github.com/JontCont/dotnetMvc_Deploy.git
           git config --list
           
