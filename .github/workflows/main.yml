@@ -11,8 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: run checkout@v2
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
                
       - name: setup-msbuild and NuGet.exe
         uses: |
