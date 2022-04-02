@@ -16,24 +16,32 @@ jobs:
         PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
     steps:
       - uses: actions/checkout@v2
-              
-      - name: test git 
+	  
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+      
+      - name: Setup NuGet.exe for use with actions
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: Restore NuGet Packages
+        run: nuget restore ./dotnetMVC/dotnetMVC.sln
+            
+      - name: Build and Publish Web App
+        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile        
+		
+      - name: Push git repository 
         run: |
-          
-          md test
-          cd test
-          New-Item hello1.txt
+		      cd ./dotnetMVC/dotnetMvcUnitTests/bin/Release
+
           git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
           git status
           git remote add origin https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
-
           git checkout -b gh-pages
           git pull origin gh-pages
           git add --all
           
           git commit -m "Github Actions Deploy"
           git push -u origin gh-pages
-          
