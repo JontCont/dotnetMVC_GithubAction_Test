@@ -21,7 +21,7 @@ jobs:
         run: |
           md test
           cd test
-          type nul > hello.txt
+          New-Item hello.txt
           git init
           git config --global user.name $USER_NAME
           git config --global user.email $USER_EMAIL
