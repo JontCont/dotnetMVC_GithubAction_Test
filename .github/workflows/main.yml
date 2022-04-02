@@ -13,17 +13,50 @@ jobs:
     steps:
       - name : run checkout@v2
         uses: actions/checkout@v2
-               
+      
+      # 執行一組的指令
+      - name: Run a multi-line script
+        env:
+          MY_SECRET   : ${{secrets.commit_secret}}
+          USER_NAME   : autoDeploy_bot
+          USER_EMAIL  : autoDeploy@fake.com
+          PUBLISH_DIR : ./dist
+
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1.1
       
       - name: Setup NuGet.exe for use with actions
         uses: NuGet/setup-nuget@v1.0.5
       
-      
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
+            
+      - name: Build and Publish Web App
+        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+
+      # Deploy 
+      - name: deploy Github repositoy
+        run: |
+          cd $PUBLISH_DIR
+          git init
+          git config --local user.name $USER_NAME
+          git config --local user.email $USER_EMAIL
+          git status
+          git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git
+          git checkout -b pages
+          git add --all
+          git commit -m "deploy to Github pages"
+          git push -u origin pages
+          echo 🤘 deploy pages complete.
+
       
+      # Runs a set of commands using the runners shell
+      #- name: Upload Artifact
+      #  uses: actions/upload-artifact@v1.0.0
+      #  with:
+      #    name: published_webapp
+      #    path: ./dotnetMVC/dotnetMvcUnitTests/bin/Release
+
 
 
       
