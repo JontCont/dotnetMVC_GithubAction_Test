@@ -27,7 +27,7 @@ jobs:
           git remote add origin https://github.com/JontCont/dotnetMvc_Deploy.git 
           git checkout -b pages
           git add --all
-          git commit -m "deploy to Github pages" 
+          git commit --allow-empty --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
           git push -u origin pages
           echo 🤘 deploy pages complete.
 
