@@ -9,7 +9,11 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    env:
+        MY_SECRET   : ${{secrets.commit_secret}}
+        USER_NAME   : autoDeploy_bot
+        USER_EMAIL  : autoDeploy@fake.com
+        PUBLISH_DIR : ./dist
     steps:
       - name : run checkout@v2
         uses: actions/checkout@v2
@@ -28,12 +32,7 @@ jobs:
 
       # Deploy 
       # 執行一組的指令
-      - name: Run a multi-line script
-        env:
-          MY_SECRET   : ${{secrets.commit_secret}}
-          USER_NAME   : autoDeploy_bot
-          USER_EMAIL  : autoDeploy@fake.com
-          PUBLISH_DIR : ./dist
+
 
       - name: deploy Github repositoy
         run: |
