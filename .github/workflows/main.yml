@@ -30,6 +30,7 @@ jobs:
       - name: git pull repository 
         run: |
           mkdir ./dotnetMVC/dotnetMVC/bin/publish
+          cd ./dotnetMVC/dotnetMVC/bin/publish
           git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
           git init
           git config --global user.name  "github-actions[bot]"
@@ -41,7 +42,6 @@ jobs:
 
       - name: git push publish From Repository
         run: |
-          ls
           echo --------------------------------
           git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
           
