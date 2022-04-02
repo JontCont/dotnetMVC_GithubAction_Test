@@ -27,7 +27,7 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
-      - name: git pull repository and Build Publish Web App
+      - name: git pull repository 
         run: |
           mkdir ./dotnetMVC/dotnetMVC/bin/publish
           git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
@@ -42,7 +42,8 @@ jobs:
       - name: git push publish From Repository
         run: |
           git config --list
-        
+          git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+
           git status
           git add --all
           
