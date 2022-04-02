@@ -19,8 +19,8 @@ jobs:
               
       - name: test git 
         run: |
-          echo $USER_NAME
-          echo $USER_EMAIL
-
+          git config --global user.name  $USER_NAME
+          git config --global user.email $USER_EMAIL
+          git config --
           
 
