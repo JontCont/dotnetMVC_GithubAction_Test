@@ -15,27 +15,13 @@ jobs:
         USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
         PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
     steps:
-      - name : run checkout@v2
-        uses: actions/checkout@v2
-               
-      - name: setup-msbuild
-        uses: microsoft/setup-msbuild@v1.1
-      
-      - name: Setup NuGet.exe for use with actions
-        uses: NuGet/setup-nuget@v1.0.5
-            
-      - name: Restore NuGet Packages
-        run: nuget restore ./dotnetMVC/dotnetMVC.sln
-      
-      - name: Build and Publish Web App
-        run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
-
-      # Deploy 
-      # 執行一組的指令
-
-      - name: deploy Github repositoy
+      - uses: actions/checkout@v2
+              
+      - name: test git 
         run: |
-          cd $PUBLISH_DIR
+          md test
+          cd test
+          type nul > hello.txt
           git init
           git config --global user.name $USER_NAME
           git config --global user.email $USER_EMAIL
@@ -46,3 +32,4 @@ jobs:
           git commit -m "deploy to Github pages" 
           git push -u origin pages
           echo 🤘 deploy pages complete.
+
