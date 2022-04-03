@@ -53,16 +53,15 @@ jobs:
         run: |
           cd ./dotnetMVC/dotnetMVC/bin/publish
 
-          echo ----- config --------
+          echo ============ " config list " ============
           git config --list
 
-          echo ---- statut--------
+          echo ============ "statut and content add " ============
           git add --all
           git status
-
           
-          echo ----- ls ---------
-          ls
+          echo ============ " check branch list" ============
+          git brancg -a
       #   echo --------------------------------
       #   git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
       #   
