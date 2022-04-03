@@ -15,7 +15,10 @@ jobs:
         USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
         PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
     steps:
-      - name: test script commands line
+      - name: 中文測試
         run: |
           echo "show env: ${{env.USER_NAME}} "
           echo "show env: " ${{env.USER_NAME}}
+          echo " use step user $user"
+        env: 
+          user: ${{env.USER_NAME}}
