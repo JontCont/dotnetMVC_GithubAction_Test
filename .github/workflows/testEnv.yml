@@ -21,7 +21,7 @@ jobs:
         run: |
           echo "show env: ${{env.USER_NAME}} "
           echo "show env: " ${{env.USER_NAME}}
-          echo " use step user " $user
+          echo " use step user " ${user}
           
           
       - name: Display local environment variable
