@@ -34,10 +34,14 @@ jobs:
           cd ./dotnetMVC/dotnetMVC/bin/publish
           
           echo "--- add remote repository ---"
+          git init
           git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
           
+          echo "--- config list and status  ---"
+          git status
+          git config --list
+          
           echo "--- init dir. content ---"
-          git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch deploy gh-pages-dev
