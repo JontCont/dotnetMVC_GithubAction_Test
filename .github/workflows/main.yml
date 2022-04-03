@@ -62,6 +62,13 @@ jobs:
           
           echo ============ " check branch list" ============
           git branch -a
+          
+          echo ============ " commit " =============
+          git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
+          
+          echo ============ " push " ================
+          git push -u deploy gh-pages-dev
+          
       #   echo --------------------------------
       #   git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
       #   
