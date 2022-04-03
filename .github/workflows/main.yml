@@ -71,7 +71,7 @@ jobs:
           git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
           
           echo ============ " push " ================
-          git push -u deploy
+          git pull -u deploy --rebase
           
       #   echo --------------------------------
       #   git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
