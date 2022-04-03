@@ -68,5 +68,5 @@ jobs:
           git commit -m "${{env.COMMIT_STR}}"
           
           echo ============ " PUSH " ==============
-          git push -u deploy
+          git push -u deploy gh-pages
           
