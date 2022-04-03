@@ -56,11 +56,7 @@ jobs:
       - name: git push publish From Repository
         run: |
           cd ./dotnetMVC/dotnetMVC/bin/publish
-         
-          echo "--- check dir. content and fetch deploy ---"
-          dir 
-          git fetch deploy 
-          
+                  
           echo ============ " config list " ============
           git config --list
 
