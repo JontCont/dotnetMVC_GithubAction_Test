@@ -41,6 +41,8 @@ jobs:
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          echo ============ " pull " ================
+          git pull deploy master --rebase
           
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
@@ -51,10 +53,7 @@ jobs:
                   
           echo ============ " config list " ============
           git config --list
-          
-          echo ============ " pull " ================
-          git pull deploy master --rebase
-          
+      
           echo ============ "statut and content add " ============
           git add --all
           git status
