@@ -17,6 +17,7 @@ jobs:
         PUBLISH_DIR : ./dotnetMVC/dotnetMVC/bin/publish
         PRJ_SLN     : ./dotnetMVC/dotnetMVC.sln
         COMMIT_STR  : "Bots Update : $(Get-Date -Format \"yyyy.MMdd.HHmm\")"
+        
     steps:
       - uses: actions/checkout@v2
       
@@ -44,7 +45,7 @@ jobs:
           git config --global user.email "${{env.USER_EMAIL}}"
 
           echo ============ " pull " ================
-          git pull deploy master --rebase
+          git pull deploy gh-pages --rebase
           
       - name: Build and Publish Web App
         run: msbuild ${{env.PRJ_SLN}} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
@@ -67,6 +68,6 @@ jobs:
           git commit -m "${{env.COMMIT_STR}}"
           
           echo ============ " PUSH " ==============
-          git push -u deploy
+          git push -u deploy gh-pages
 
           
