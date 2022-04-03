@@ -33,15 +33,11 @@ jobs:
           mkdir ./dotnetMVC/dotnetMVC/bin/publish
           cd ./dotnetMVC/dotnetMVC/bin/publish
           
-          echo "--- add remote repository ---"
+          echo "--- init dir. and add remote repository ---"
           git init
           git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
-          
-          echo "--- config list and status  ---"
-          git status
-          git config --list
         
-          echo "--- init dir. content ---"
+          echo "--- set config  ---"
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
