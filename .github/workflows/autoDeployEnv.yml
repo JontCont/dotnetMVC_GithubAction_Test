@@ -64,7 +64,7 @@ jobs:
           git branch -a
           
           echo ============ " commit " =============
-          git commit -m ${{env.COMMIT_STR}}
+          git commit -m "${{env.COMMIT_STR}}"
           
           echo ============ " PUSH " ==============
           git push -u deploy
