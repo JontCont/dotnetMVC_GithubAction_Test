@@ -17,6 +17,5 @@ jobs:
     steps:
       - name: test script commands line
         run: |
-          echo "show env: $(${{env.USER_NAME}}) "
           echo "show env: ${{env.USER_NAME}} "
           echo "show env: " ${{env.USER_NAME}}
