@@ -52,11 +52,14 @@ jobs:
       - name: git push publish From Repository
         run: |
           cd ./dotnetMVC/dotnetMVC/bin/publish
-          echo ---- statut--------
-          git status
-          
+
           echo ----- config --------
           git config --list
+
+          echo ---- statut--------
+          git add --all
+          git status
+
           
           echo ----- ls ---------
           ls
