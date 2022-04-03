@@ -46,13 +46,20 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch deploy 
           
+          echo "--- check dir. content ---"
+          dir 
+          
+          
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
       - name: git push publish From Repository
         run: |
           cd ./dotnetMVC/dotnetMVC/bin/publish
-
+         
+          echo "--- check dir. content ---"
+          dir 
+          
           echo ============ " config list " ============
           git config --list
 
