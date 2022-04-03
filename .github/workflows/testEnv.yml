@@ -21,13 +21,13 @@ jobs:
         run: |
           echo "show env: ${{env.USER_NAME}} "
           echo "show env: " ${{env.USER_NAME}}
-          echo " use step user " ${env.user}
+          echo " use step user "  $env:user
           
           
       - name: Display local environment variable
         env:
           VERSION_PREFIX: MyPrefix
         run: |
-          echo We can use a variable multiple time: $env.VERSION_PREFIX
-          echo inside a multi-line script: $env.VERSION_PREFIX
+          echo We can use a variable multiple time: $env:VERSION_PREFIX
+          echo inside a multi-line script: $env:VERSION_PREFIX
 
