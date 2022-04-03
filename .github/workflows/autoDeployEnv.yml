@@ -45,7 +45,7 @@ jobs:
           git config --global user.email "${{env.USER_EMAIL}}"
 
           echo ============ " pull " ================
-          git pull deploy --rebase
+          git pull deploy master --rebase
           
       - name: Build and Publish Web App
         run: msbuild ${{env.PRJ_SLN}} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
