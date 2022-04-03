@@ -40,7 +40,7 @@ jobs:
           echo "--- config list and status  ---"
           git status
           git config --list
-          
+          git checkout -b gh-pages-dev
           echo "--- init dir. content ---"
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
