@@ -44,7 +44,7 @@ jobs:
           echo "--- init dir. content ---"
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch deploy 
+          git fetch deploy master
           
           echo "--- check dir. content ---"
           dir 
