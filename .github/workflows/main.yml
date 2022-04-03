@@ -27,20 +27,53 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore ./dotnetMVC/dotnetMVC.sln
       
+      - name: git pull repository 
+        run: |
+          echo "--- create dir. and move dir. path ---"
+          mkdir ./dotnetMVC/dotnetMVC/bin/publish
+          cd ./dotnetMVC/dotnetMVC/bin/publish
+          
+          echo "--- init dir. and add remote repository ---"
+          git init
+          git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+        
+          echo "--- set config  ---"
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo ============ " pull " ================
+          git pull deploy master --rebase
+          dir
+          
       - name: Build and Publish Web App
         run: msbuild ./dotnetMVC/dotnetMVC.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
-      - name: test git 
+      - name: git push publish From Repository
         run: |
           cd ./dotnetMVC/dotnetMVC/bin/publish
-          git init
-          git config --global user.name  "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          git status
-          git remote add origin https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
-          git checkout -b gh-pages-dev
+                  
+          echo ============ " config list " ============
+          git config --list
+      
+          echo ============ "statut and content add " ============
           git add --all
+          git status
           
-          git commit -m "Github Actions Deploy"
-          git push -uf origin gh-pages-dev 
+          echo ============ " check branch list" ============
+          git branch -a
+          
+          echo ============ " commit " =============
+          git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
+          
+          echo ============ " PUSH " ==============
+          git push -u deploy
+
+          
+      #   echo --------------------------------
+      #   git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+      #   
+      #   git status
+      #   git fetch deploy gh-pages-dev
+      #   git add --all
+      #   git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
+      #   git push -u deploy gh-pages-dev 
