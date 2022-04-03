@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: 中文測試
         env: 
-          user: ${{env.USER_NAME}}
+          user: test1
         run: |
           echo "show env: ${{env.USER_NAME}} "
           echo "show env: " ${{env.USER_NAME}}
