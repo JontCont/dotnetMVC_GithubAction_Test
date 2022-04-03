@@ -61,7 +61,7 @@ jobs:
           git status
           
           echo ============ " check branch list" ============
-          git brancg -a
+          git branch -a
       #   echo --------------------------------
       #   git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
       #   
