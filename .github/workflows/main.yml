@@ -58,4 +58,4 @@ jobs:
       #   git fetch deploy gh-pages-dev
       #   git add --all
       #   git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
-          git push -u deploy gh-pages-dev 
+      #   git push -u deploy gh-pages-dev 
