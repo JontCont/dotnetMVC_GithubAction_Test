@@ -59,7 +59,10 @@ jobs:
                   
           echo ============ " config list " ============
           git config --list
-
+          
+          echo ============ " pull " ================
+          git pull --rebase
+          
           echo ============ "statut and content add " ============
           git add --all
           git status
@@ -70,8 +73,7 @@ jobs:
           echo ============ " commit " =============
           git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
           
-          echo ============ " push " ================
-          git pull --rebase
+
           
       #   echo --------------------------------
       #   git remote set-url deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
