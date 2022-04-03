@@ -16,9 +16,10 @@ jobs:
         PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
     steps:
       - name: 中文測試
+        env: 
+          user: ${{env.USER_NAME}}
         run: |
           echo "show env: ${{env.USER_NAME}} "
           echo "show env: " ${{env.USER_NAME}}
-          echo " use step user $user"
-        env: 
-          user: ${{env.USER_NAME}}
+          echo " use step user " $user
+
