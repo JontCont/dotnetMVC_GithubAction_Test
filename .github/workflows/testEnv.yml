@@ -1,0 +1,22 @@
+name: Use windows On github Action
+
+on:
+  push:
+    branches: [ dev_pull_request ]
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+        MY_SECRET   : ${{secrets.commit_secret}}
+        USER_NAME   : github-actions[bot]
+        USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
+        PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
+    steps:
+      - name: test script commands line
+        run: |
+          echo "show env: $($USER_NAME) "
+          echo "show env: $USER_NAME "
+          echo "show env: " $USER_NAME
