@@ -65,6 +65,8 @@ jobs:
           echo ============ " commit " =============
           git commit -m "Bots Update : $(Get-Date -Format "yyyy.MMdd.HHmm")"
           
+          echo ============ " PUSH " ==============
+          git push -u deploy
 
           
       #   echo --------------------------------
