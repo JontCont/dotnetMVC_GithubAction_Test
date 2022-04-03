@@ -29,14 +29,14 @@ jobs:
       
       - name: git pull repository 
         run: |
-          echo --- create dir. and move dir. path ---
+          echo "--- create dir. and move dir. path ---"
           mkdir ./dotnetMVC/dotnetMVC/bin/publish
           cd ./dotnetMVC/dotnetMVC/bin/publish
           
-          echo --- add remote repository ---
+          echo "--- add remote repository ---"
           git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
           
-          echo --- init dir. content ---
+          echo "--- init dir. content ---"
           git init
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
