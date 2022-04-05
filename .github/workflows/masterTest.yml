@@ -7,7 +7,67 @@ on:
   workflow_dispatch:
 
 jobs:
+  build:
+    runs-on: windows-latest
+    env:
+        MY_SECRET   : ${{secrets.commit_secret}}
+        USER_NAME   : github-actions[bot]
+        USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
+        PUBLISH_DIR : ./dotnetMVC/dotnetMVC/bin/publish
+        PRJ_SLN     : ./dotnetMVC/dotnetMVC.sln
+        COMMIT_STR  : "Bots Update : $(Get-Date -Format \"yyyy.MMdd.HHmm\")"
+        
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+      
+      - name: Setup NuGet.exe for use with actions
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: Restore NuGet Packages
+        run: nuget restore ${{env.PRJ_SLN}}
+      
+      - name: git pull repository 
+        run: |
+          echo "--- create dir. and move dir. path ---"
+          mkdir ${{env.PUBLISH_DIR}}
+          cd ${{env.PUBLISH_DIR}}
+          
+          echo "--- init dir. and add remote repository ---"
+          git init
+          git remote add deploy https://${{secrets.commit_secret}}@github.com/JontCont/dotnetMvc_Deploy.git 
+        
+          echo "--- set config  ---"
+          git config --global user.name  "${{env.USER_NAME}}"
+          git config --global user.email "${{env.USER_EMAIL}}"
 
+          echo ============ " pull " ================
+          git pull deploy master --rebase
+          
+      - name: Build and Publish Web App
+        run: msbuild ${{env.PRJ_SLN}} /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+
+      - name: git push publish From Repository
+        run: |
+          cd ${{env.PUBLISH_DIR}}
+                  
+          echo ============ " config list " ============
+          git config --list
+      
+          echo ============ "statut and content add " ============
+          git add --all
+          git status
+          
+          echo ============ " check branch list" ============
+          git branch -a
+          
+          echo ============ " commit " =============
+          git commit -m "${{env.COMMIT_STR}}"
+          
+          echo ============ " PUSH " ==============
+          git push -u deploy 
           
   pull_repository:
     runs-on: self-hosted
@@ -16,5 +76,5 @@ jobs:
       - name: 重新 pull source 
         run: |
           cd E:\ProgrameDev\publish\dotnetMvc_Deploy
-          ls
+          git pull
 
