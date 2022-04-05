@@ -1,0 +1,33 @@
+name: testEnv
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+        MY_SECRET   : ${{secrets.commit_secret}}
+        USER_NAME   : github-actions[bot]
+        USER_EMAIL  : 41898282+github-actions[bot]@users.noreply.github.com
+        PUBLISH_DIR : ./dotnetMVC/dotnetMvcUnitTests/bin/Release
+    steps:
+      - name: 中文測試
+        env: 
+          user: test1
+        run: |
+          echo "show env: ${{env.USER_NAME}} "
+          echo "show env: " ${{env.USER_NAME}}
+          echo " use step user "  $env:user
+          
+          
+      - name: Display local environment variable
+        env:
+          VERSION_PREFIX: MyPrefix
+        run: |
+          echo We can use a variable multiple time: $env:VERSION_PREFIX
+          echo inside a multi-line script: $env:VERSION_PREFIX
+
