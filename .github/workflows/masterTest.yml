@@ -13,8 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: 確認執行PATH
+        run: |
+          ls
+          dir
 
       - name: Run a multi-line script
         run: |
