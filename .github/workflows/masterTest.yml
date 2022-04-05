@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: 重新 pull source 
         run: |
-          cd E:\ProgrameDev\"發行"\
+          chcp 65001
+          cd E:\ProgrameDev\發行\dotnetMvc_Deploy
           ls
 
